@@ -1,0 +1,1084 @@
+= Challenge hunting[[_challenge_hunting]]
+
+include::../attributes.adoc[]
+
+This part of the book can be read from end to end as a _hacking guide_.
+Used in that way you will be walked through various types of web
+vulnerabilities and learn how to exploit their occurrences in the Juice
+Shop application. Alternatively you can start hacking the Juice Shop on
+your own and use this part simply as a reference and _source of hints_
+in case you get stuck at a particular challenge.
+
+In case you want to look up hints for a particular challenge, the
+following tables lists all challenges of the OWASP Juice Shop grouped by
+their difficulty and in the same order as they appear on the Score
+Board.
+
+NOTE: The challenge hints found in this release of the companion guide are
+compatible with {juiceShopVersion} of OWASP Juice Shop.
+
+ifeval::[{is_ctf} == 1]
+|===
+| Name | Description | Hints
+| Access Log
+| Gain access to any access log file of the server.
+| xref:part2/sensitive-data-exposure.adoc#_gain_access_to_any_access_log_file_of_the_server[💡]
+
+| Admin Registration
+| Register as a user with administrator privileges.
+| xref:part2/improper-input-validation.adoc#_register_as_a_user_with_administrator_privileges[💡]
+
+| Admin Section
+| Access the administration section of the store.
+| xref:part2/broken-access-control.adoc#_access_the_administration_section_of_the_store[💡]
+
+| AI Debugging
+| Reveal some behind-the-scenes information on the chatbot as a non-admin user.
+| xref:part2/broken-access-control.adoc#_reveal_some_behind_the_scenes_information_on_the_chatbot_as_a_non_admin_user[💡]
+
+| Allowlist Bypass
+| Enforce a redirect to a page you are not supposed to redirect to.
+| xref:part2/unvalidated-redirects.adoc#_enforce_a_redirect_to_a_page_you_are_not_supposed_to_redirect_to[💡]
+
+| API-only XSS
+| Perform a _persisted_ XSS attack with `<iframe src="javascript:alert(`xss`)">` without using the frontend application at all.
+| xref:part2/xss.adoc#_perform_a_persisted_xss_attack_without_using_the_frontend_application_at_all[💡]
+
+| Arbitrary File Write
+| Overwrite the Legal Information file.
+| xref:part2/vulnerable-components.adoc#_overwrite_the_legal_information_file[💡]
+
+| Bjoern's Favorite Pet
+| Reset the password of Bjoern's OWASP account via the Forgot Password mechanism with _the truthful answer_ to his security question.
+| xref:part2/broken-authentication.adoc#_reset_the_password_of_bjoerns_owasp_account_via_the_forgot_password_mechanism[💡]
+
+| Blockchain Hype
+| Learn about the Token Sale before its official announcement.
+| xref:part2/security-through-obscurity.adoc#_learn_about_the_token_sale_before_its_official_announcement[💡]
+
+| Blocked RCE DoS
+| Perform a Remote Code Execution that would keep a less hardened application busy forever.
+| xref:part2/insecure-deserialization.adoc#_perform_a_remote_code_execution_that_would_keep_a_less_hardened_application_busy_forever[💡]
+
+| Bonus Payload
+| Use the bonus payload `+<iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/771984076&color=%23ff5500&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>+` in the _DOM XSS_ challenge.
+| xref:part2/xss.adoc#_use_the_bonus_payload_in_the_dom_xss_challenge[💡]
+
+| CAPTCHA Bypass
+| Submit 10 or more customer feedbacks within 10 seconds.
+| xref:part2/broken-anti-automation.adoc#_submit_10_or_more_customer_feedbacks_within_10_seconds[💡]
+
+| Change Bender's Password
+| Change Bender's password into _slurmCl4ssic_ without using SQL Injection or Forgot Password.
+| xref:part2/broken-authentication.adoc#_change_benders_password_into_slurmcl4ssic_without_using_sql_injection_or_forgot_password[💡]
+
+| Chatbot Prompt Injection
+| Trick the chatbot into generating a coupon code for you despite its coupon policy saying otherwise.
+| xref:part2/injection.adoc#_trick_the_chatbot_into_generating_a_coupon_code_for_you[💡]
+
+| Christmas Special
+| Order the Christmas special offer of 2014.
+| xref:part2/injection.adoc#_order_the_christmas_special_offer_of_2014[💡]
+
+| Client-side XSS Protection
+| Perform a _persisted_ XSS attack with `<iframe src="javascript:alert(`xss`)">` bypassing a client-side security mechanism.
+| xref:part2/xss.adoc#_perform_a_persisted_xss_attack_bypassing_a_client_side_security_mechanism[💡]
+
+| Confidential Document
+| Access a confidential document.
+| xref:part2/sensitive-data-exposure.adoc#_access_a_confidential_document[💡]
+
+| Cross-Site Imaging
+| Stick cute cross-domain kittens all over our delivery boxes.
+| xref:part2/security-misconfiguration.adoc#_stick_cute_cross_domain_kittens_all_over_our_delivery_boxes[💡]
+
+| CSP Bypass
+| Bypass the Content Security Policy and perform an XSS attack with `<script>alert(`xss`)</script>` on a legacy page within the application.
+| xref:part2/xss.adoc#_bypass_the_content_security_policy_and_perform_an_xss_attack_on_a_legacy_page[💡]
+
+| CSRF
+| Change the name of a user by performing Cross-Site Request Forgery from another origin.
+| xref:part2/broken-access-control.adoc#_change_the_name_of_a_user_by_performing_cross_site_request_forgery_from_another_origin[💡]
+
+| Database Schema
+| Exfiltrate the entire DB schema definition via SQL Injection.
+| xref:part2/injection.adoc#_exfiltrate_the_entire_db_schema_definition_via_sql_injection[💡]
+
+| Deluxe Fraud
+| Obtain a Deluxe Membership without paying for it.
+| xref:part2/improper-input-validation.adoc#_obtain_a_deluxe_membership_without_paying_for_it[💡]
+
+| Deprecated Interface
+| Use a deprecated B2B interface that was not properly shut down.
+| xref:part2/security-misconfiguration.adoc#_use_a_deprecated_b2b_interface_that_was_not_properly_shut_down[💡]
+
+| DOM XSS
+| Perform a _DOM_ XSS attack with `<iframe src="javascript:alert(`xss`)">`.
+| xref:part2/xss.adoc#_perform_a_dom_xss_attack[💡]
+
+| Easter Egg
+| Find the hidden easter egg.
+| xref:part2/broken-access-control.adoc#_find_the_hidden_easter_egg[💡]
+
+| Email Leak
+| Perform an unwanted information disclosure by accessing data cross-domain.
+| xref:part2/sensitive-data-exposure.adoc#_perform_an_unwanted_information_disclosure_by_accessing_data_cross_domain[💡]
+
+| Empty User Registration
+| Register a user with an empty email and password.
+| xref:part2/improper-input-validation.adoc#_register_a_user_with_an_empty_email_and_password[💡]
+
+| Ephemeral Accountant
+| Log in with the (non-existing) accountant _acc0unt4nt@juice-sh.op_ without ever registering that user.
+| xref:part2/injection.adoc#_log_in_with_the_non_existing_accountant_without_ever_registering_that_user[💡]
+
+| Error Handling
+| Provoke an error that is neither very gracefully nor consistently handled.
+| xref:part2/security-misconfiguration.adoc#_provoke_an_error_that_is_neither_very_gracefully_nor_consistently_handled[💡]
+
+| Expired Coupon
+| Successfully redeem an expired campaign coupon code.
+| xref:part2/improper-input-validation.adoc#_successfully_redeem_an_expired_campaign_coupon_code[💡]
+
+| Exposed Credentials
+| A developer was careless with hardcoding unused, but still valid credentials for a testing account on the client-side.
+| xref:part2/sensitive-data-exposure.adoc#_a_developer_was_careless_with_hardcoding_unused_but_still_valid_credentials[💡]
+
+| Exposed Metrics
+| Find the endpoint that serves usage data to be scraped by a popular monitoring system.
+| xref:part2/sensitive-data-exposure.adoc#_find_the_endpoint_that_serves_usage_data_to_be_scraped_by_a_popular_monitoring_system[💡]
+
+| Extra Language
+| Retrieve the language file that never made it into production.
+| xref:part2/broken-anti-automation.adoc#_retrieve_the_language_file_that_never_made_it_into_production[💡]
+
+| Five-Star Feedback
+| Get rid of all 5-star customer feedback.
+| xref:part2/broken-access-control.adoc#_get_rid_of_all_5_star_customer_feedback[💡]
+
+| Forged Coupon
+| Forge a coupon code that gives you a discount of at least 80%.
+| xref:part2/cryptographic-issues.adoc#_forge_a_coupon_code_that_gives_you_a_discount_of_at_least_80[💡]
+
+| Forged Feedback
+| Post some feedback in another user's name.
+| xref:part2/broken-access-control.adoc#_post_some_feedback_in_another_users_name[💡]
+
+| Forged Review
+| Post a product review as another user or edit any user's existing review.
+| xref:part2/broken-access-control.adoc#_post_a_product_review_as_another_user_or_edit_any_users_existing_review[💡]
+
+| Forged Signed JWT
+| Forge an almost properly RSA-signed JWT token that impersonates the (non-existing) user _rsa_lord@juice-sh.op_.
+| xref:part2/vulnerable-components.adoc#_forge_an_almost_properly_rsa_signed_jwt_token[💡]
+
+| Forgotten Developer Backup
+| Access a developer's forgotten backup file.
+| xref:part2/sensitive-data-exposure.adoc#_access_a_developers_forgotten_backup_file[💡]
+
+| Forgotten Sales Backup
+| Access a salesman's forgotten backup file.
+| xref:part2/sensitive-data-exposure.adoc#_access_a_salesmans_forgotten_backup_file[💡]
+
+| Frontend Typosquatting
+| Inform the shop about a _typosquatting_ imposter that dug itself deep into the frontend. (Mention the exact name of the culprit)
+| xref:part2/vulnerable-components.adoc#_inform_the_shop_about_a_typosquatting_imposter_that_dug_itself_deep_into_the_frontend[💡]
+
+| GDPR Data Erasure
+| Log in with Chris' erased user account.
+| xref:part2/broken-authentication.adoc#_log_in_with_chris_erased_user_account[💡]
+
+| GDPR Data Theft
+| Steal someone else's personal data without using Injection.
+| xref:part2/sensitive-data-exposure.adoc#_steal_someone_elses_personal_data_without_using_injection[💡]
+
+| Greedy Chatbot Manipulation
+| Convince the chatbot to give you a coupon of 50% or more. Because apparently a 10% max policy is just a suggestion when you ask nicely enough.
+| xref:part2/injection.adoc#_convince_the_chatbot_to_give_you_a_coupon_of_50_or_more[💡]
+
+| HTTP-Header XSS
+| Perform a _persisted_ XSS attack with `<iframe src="javascript:alert(`xss`)">` through an HTTP header.
+| xref:part2/xss.adoc#_perform_a_persisted_xss_attack_through_an_http_header[💡]
+
+| Imaginary Challenge
+| Solve challenge #999. Unfortunately, this challenge does not exist.
+| xref:part2/cryptographic-issues.adoc#_solve_challenge_999[💡]
+
+| Leaked Access Logs
+| Dumpster dive the Internet for a leaked password and log in to the original user account it belongs to. (Creating a new account with the same password does not qualify as a solution.)
+| xref:part2/sensitive-data-exposure.adoc#_dumpster_dive_the_internet_for_a_leaked_password_and_log_in_to_the_original_user_account_it_belongs_to[💡]
+
+| Leaked API Key
+| Inform the shop about a leaked API key. (Mention the exact key in your comment)
+| xref:part2/sensitive-data-exposure.adoc#_inform_the_shop_about_a_leaked_api_key[💡]
+
+| Leaked Unsafe Product
+| Identify an unsafe product that was removed from the shop and inform the shop which ingredients are dangerous.
+| xref:part2/sensitive-data-exposure.adoc#_identify_an_unsafe_product_that_was_removed_from_the_shop_and_inform_the_shop_which_ingredients_are_dangerous[💡]
+
+| Legacy Typosquatting
+| Inform the shop about a _typosquatting_ trick it has been a victim of at least in v6.2.0-SNAPSHOT. (Mention the exact name of the culprit)
+| xref:part2/vulnerable-components.adoc#_inform_the_shop_about_a_typosquatting_trick_it_has_been_a_victim_of[💡]
+
+| Local File Read
+| Gain read access to an arbitrary local file on the web server.
+| xref:part2/vulnerable-components.adoc#_gain_read_access_to_an_arbitrary_local_file_on_the_web_server[💡]
+
+| Login Admin
+| Log in with the administrator's user account.
+| xref:part2/injection.adoc#_log_in_with_the_administrators_user_account[💡]
+
+| Login Amy
+| Log in with Amy's original user credentials. (This could take 93.83 billion trillion trillion centuries to brute force, but luckily she did not read the "One Important Final Note")
+| xref:part2/sensitive-data-exposure.adoc#_log_in_with_amys_original_user_credentials[💡]
+
+| Login Bender
+| Log in with Bender's user account.
+| xref:part2/injection.adoc#_log_in_with_benders_user_account[💡]
+
+| Login Bjoern
+| Log in with Bjoern's Gmail account without previously changing his password, applying SQL Injection, or hacking his Google account.
+| xref:part2/broken-authentication.adoc#_log_in_with_bjoerns_gmail_account[💡]
+
+| Login Cloud Admin
+| Log in with the cloud admin's user account _without_ using SQL Injection.
+| xref:part2/sensitive-data-exposure.adoc#_log_in_with_the_cloud_admins_user_account[💡]
+
+| Login Jim
+| Log in with Jim's user account.
+| xref:part2/injection.adoc#_log_in_with_jims_user_account[💡]
+
+| Login MC SafeSearch
+| Log in with MC SafeSearch's original user credentials without applying SQL Injection or any other bypass.
+| xref:part2/sensitive-data-exposure.adoc#_log_in_with_mc_safesearchs_original_user_credentials[💡]
+
+| Login Support Team
+| Log in with the support team's original user credentials without applying SQL Injection or any other bypass.
+| xref:part2/security-misconfiguration.adoc#_log_in_with_the_support_teams_original_user_credentials[💡]
+
+| Manipulate Basket
+| Put an additional product into another user's shopping basket.
+| xref:part2/broken-access-control.adoc#_put_an_additional_product_into_another_users_shopping_basket[💡]
+
+| Mass Dispel
+| Close multiple "Challenge solved"-notifications in one go.
+| xref:part2/miscellaneous.adoc#_close_multiple_challenge_solved_notifications_in_one_go[💡]
+
+| Memory Bomb
+| Drop some explosive data into a vulnerable file-handling endpoint.
+| xref:part2/insecure-deserialization.adoc#_drop_some_explosive_data_into_a_vulnerable_file_handling_endpoint[💡]
+
+| Meta Geo Stalking
+| Determine the answer to John's security question by looking at an upload of him to the Photo Wall and use it to reset his password via the Forgot Password mechanism.
+| xref:part2/sensitive-data-exposure.adoc#_determine_the_answer_to_johns_security_question[💡]
+
+| Mint the Honey Pot
+| Mint the Honey Pot NFT by gathering BEEs from the bee haven.
+| xref:part2/improper-input-validation.adoc#_mint_the_honey_pot_nft_by_gathering_bees_from_the_bee_haven[💡]
+
+| Misplaced IaC Files
+| Access the misplaced Infrastructure as Code files that were accidentally included in the web application deliverable.
+| xref:part2/security-misconfiguration.adoc#_access_the_misplaced_infrastructure_as_code_files[💡]
+
+| Misplaced Signature File
+| Access a misplaced SIEM signature file.
+| xref:part2/sensitive-data-exposure.adoc#_access_a_misplaced_siem_signature_file[💡]
+
+| Missing Encoding
+| Retrieve the photo of Bjoern's cat in "melee combat-mode".
+| xref:part2/improper-input-validation.adoc#_retrieve_the_photo_of_bjoerns_cat_in_melee_combat_mode[💡]
+
+| Multiple Likes
+| Like any review at least three times as the same user.
+| xref:part2/broken-anti-automation.adoc#_like_any_review_at_least_three_times_as_the_same_user[💡]
+
+| Nested Easter Egg
+| Apply some advanced cryptanalysis to find _the real_ easter egg.
+| xref:part2/cryptographic-issues.adoc#_apply_some_advanced_cryptanalysis_to_find_the_real_easter_egg[💡]
+
+| NFT Takeover
+| Take over the wallet containing our official Soul Bound Token (NFT).
+| xref:part2/sensitive-data-exposure.adoc#_take_over_the_wallet_containing_our_official_soul_bound_token[💡]
+
+| NoSQL DoS
+| Let the server sleep for some time. (It has done more than enough hard work for you)
+| xref:part2/injection.adoc#_let_the_server_sleep_for_some_time[💡]
+
+| NoSQL Exfiltration
+| All your orders are belong to us! Even the ones which don't!
+| xref:part2/injection.adoc#_all_your_orders_are_belong_to_us[💡]
+
+| NoSQL Manipulation
+| Update multiple product reviews at the same time.
+| xref:part2/injection.adoc#_update_multiple_product_reviews_at_the_same_time[💡]
+
+| Outdated Allowlist
+| Let us redirect you to one of our crypto currency addresses which are not promoted any longer.
+| xref:part2/unvalidated-redirects.adoc#_let_us_redirect_you_to_one_of_our_crypto_currency_addresses[💡]
+
+| Password Hash Leak
+| Obtain the password (hash) of the currently logged-in user directly from a REST API endpoint.
+| xref:part2/sensitive-data-exposure.adoc#_obtain_the_password_hash_of_the_currently_logged_in_user_directly_from_a_rest_api_endpoint[💡]
+
+| Password Strength
+| Log in with the administrator's user credentials without previously changing them or applying SQL Injection.
+| xref:part2/broken-authentication.adoc#_log_in_with_the_administrators_user_credentials_without_previously_changing_them_or_applying_sql_injection[💡]
+
+| Payback Time
+| Place an order that makes you rich.
+| xref:part2/improper-input-validation.adoc#_place_an_order_that_makes_you_rich[💡]
+
+| Poison Null Byte
+| Bypass a security control with a Poison Null Byte to access a file not meant for your eyes.
+| xref:part2/improper-input-validation.adoc#_bypass_a_security_control_with_a_poison_null_byte[💡]
+
+| Premium Paywall
+| Unlock Premium Challenge to access exclusive content.
+| xref:part2/cryptographic-issues.adoc#_unlock_premium_challenge_to_access_exclusive_content[💡]
+
+| Privacy Policy
+| Read our privacy policy.
+| xref:part2/miscellaneous.adoc#_read_our_privacy_policy[💡]
+
+| Privacy Policy Inspection
+| Prove that you actually read our privacy policy.
+| xref:part2/security-through-obscurity.adoc#_prove_that_you_actually_read_our_privacy_policy[💡]
+
+| Product Tampering
+| Change the `href` of the link within the OWASP SSL Advanced Forensic Tool (O-Saft) product description into _https://owasp.slack.com_.
+| xref:part2/broken-access-control.adoc#_change_the_href_of_the_link_within_the_o_saft_product_description[💡]
+
+| Reflected XSS
+| Perform a _reflected_ XSS attack with `<iframe src="javascript:alert(`xss`)">`.
+| xref:part2/xss.adoc#_perform_a_reflected_xss_attack[💡]
+
+| Repetitive Registration
+| Follow the DRY principle while registering a user.
+| xref:part2/improper-input-validation.adoc#_follow_the_dry_principle_while_registering_a_user[💡]
+
+| Reset Bender's Password
+| Reset Bender's password via the Forgot Password mechanism with _the original answer_ to his security question.
+| xref:part2/broken-authentication.adoc#_reset_benders_password_via_the_forgot_password_mechanism[💡]
+
+| Reset Bjoern's Password
+| Reset the password of Bjoern's internal account via the Forgot Password mechanism with _the original answer_ to his security question.
+| xref:part2/broken-authentication.adoc#_reset_the_password_of_bjoerns_internal_account_via_the_forgot_password_mechanism[💡]
+
+| Reset Jim's Password
+| Reset Jim's password via the Forgot Password mechanism with _the original answer_ to his security question.
+| xref:part2/broken-authentication.adoc#_reset_jims_password_via_the_forgot_password_mechanism[💡]
+
+| Reset Morty's Password
+| Reset Morty's password via the Forgot Password mechanism with _his obfuscated answer_ to his security question.
+| xref:part2/broken-anti-automation.adoc#_reset_mortys_password_via_the_forgot_password_mechanism[💡]
+
+| Reset Uvogin's Password
+| Reset Uvogin's password via the Forgot Password mechanism with _the original answer_ to his security question.
+| xref:part2/sensitive-data-exposure.adoc#_reset_uvogins_password_via_the_forgot_password_mechanism[💡]
+
+| Retrieve Blueprint
+| Deprive the shop of earnings by downloading the blueprint for one of its products
+| xref:part2/sensitive-data-exposure.adoc#_deprive_the_shop_of_earnings_by_downloading_the_blueprint_for_one_of_its_products[💡]
+
+| Score Board
+| Find the carefully hidden 'Score Board' page.
+| xref:part2/score-board.adoc#_find_the_carefully_hidden_score_board_page[💡]
+
+| Security Advisory
+| The Juice Shop is susceptible to a known vulnerability in a library, for which an advisory has already been issued, marking the Juice Shop as _known affected_. A fix is still pending. Inform the shop about a suitable checksum as proof that you did your due diligence.
+| xref:part2/miscellaneous.adoc#_the_juice_shop_is_susceptible_to_a_known_vulnerability_in_a_library_for_which_an_advisory_has_already_been_issued[💡]
+
+| Security Policy
+| Behave like any "white hat" should before getting into the action.
+| xref:part2/miscellaneous.adoc#_behave_like_any_white_hat_should_before_getting_into_the_action[💡]
+
+| Server-side XSS Protection
+| Perform a _persisted_ XSS attack with `<iframe src="javascript:alert(`xss`)">` bypassing a server-side security mechanism.
+| xref:part2/xss.adoc#_perform_a_persisted_xss_attack_bypassing_a_server_side_security_mechanism[💡]
+
+| SSRF
+| Request a hidden resource on server through server.
+| xref:part2/broken-access-control.adoc#_request_a_hidden_resource_on_server_through_server[💡]
+
+| SSTi
+| Infect the server with juicy malware by abusing arbitrary command execution.
+| xref:part2/injection.adoc#_infect_the_server_with_juicy_malware_by_abusing_arbitrary_command_execution[💡]
+
+| Steganography
+| Rat out a notorious character hiding in plain sight in the shop. (Mention the exact name of the character)
+| xref:part2/security-through-obscurity.adoc#_rat_out_a_notorious_character_hiding_in_plain_sight_in_the_shop[💡]
+
+| Successful RCE DoS
+| Perform a Remote Code Execution that occupies the server for a while without using infinite loops.
+| xref:part2/insecure-deserialization.adoc#_perform_a_remote_code_execution_that_occupies_the_server_for_a_while_without_using_infinite_loops[💡]
+
+| Supply Chain Attack
+| Inform the development team about a danger to some of _their_ credentials. (Send them the URL of the _original report_ or an assigned CVE or another identifier of this vulnerability)
+| xref:part2/vulnerable-components.adoc#_inform_the_development_team_about_a_danger_to_some_of_their_credentials[💡]
+
+| System Prompt Extraction
+| Extract the chatbot's system prompt using prompt injection, then submit your findings (including any confidential sections) via the Customer Complaint form.
+| xref:part2/injection.adoc#_extract_the_chatbots_system_prompt[💡]
+
+| Two Factor Authentication
+| Solve the 2FA challenge for user "wurstbrot". (Disabling, bypassing or overwriting his 2FA settings does not count as a solution)
+| xref:part2/broken-authentication.adoc#_solve_the_2fa_challenge_for_user_wurstbrot[💡]
+
+| Unsigned JWT
+| Forge an essentially unsigned JWT token that impersonates the (non-existing) user _jwtn3d@juice-sh.op_.
+| xref:part2/vulnerable-components.adoc#_forge_an_essentially_unsigned_jwt_token[💡]
+
+| Upload Size
+| Upload a file larger than 100 kB.
+| xref:part2/improper-input-validation.adoc#_upload_a_file_larger_than_100_kb[💡]
+
+| Upload Type
+| Upload a file that has no .pdf or .zip extension.
+| xref:part2/improper-input-validation.adoc#_upload_a_file_that_has_no_pdf_or_zip_extension[💡]
+
+| User Credentials
+| Retrieve a list of all user credentials via SQL Injection
+| xref:part2/injection.adoc#_retrieve_a_list_of_all_user_credentials_via_sql_injection[💡]
+
+| Video XSS
+| Embed an XSS payload `</script><script>alert(`xss`)</script>` into our promo video.
+| xref:part2/xss.adoc#_embed_an_xss_payload_into_our_promo_video[💡]
+
+| View Basket
+| View another user's shopping basket.
+| xref:part2/broken-access-control.adoc#_view_another_users_shopping_basket[💡]
+
+| Visual Geo Stalking
+| Determine the answer to Emma's security question by looking at an upload of her to the Photo Wall and use it to reset her password via the Forgot Password mechanism.
+| xref:part2/sensitive-data-exposure.adoc#_determine_the_answer_to_emmas_security_question[💡]
+
+| Vulnerable Infrastructure
+| Inform the shop about the use of a known vulnerable infrastructure component. (Identify the component as specifically as possible in your complaint)
+| xref:part2/vulnerable-components.adoc#_inform_the_shop_about_the_use_of_a_known_vulnerable_infrastructure_component[💡]
+
+| Vulnerable Library
+| Inform the shop about a high-severity vulnerability. (Mention the exact library name and version in your comment)
+| xref:part2/vulnerable-components.adoc#_inform_the_shop_about_a_vulnerable_library_it_is_using[💡]
+
+| Wallet Depletion
+| Withdraw more ETH from the new wallet than you deposited.
+| xref:part2/miscellaneous.adoc#_withdraw_more_eth_from_the_new_wallet_than_you_deposited[💡]
+
+| Web3 Sandbox
+| Find an accidentally deployed code sandbox for writing smart contracts on the fly.
+| xref:part2/broken-access-control.adoc#_find_an_accidentally_deployed_code_sandbox[💡]
+
+| Weird Crypto
+| Inform the shop about an algorithm or library it should definitely not use the way it does.
+| xref:part2/cryptographic-issues.adoc#_inform_the_shop_about_an_algorithm_or_library_it_should_definitely_not_use_the_way_it_does[💡]
+
+| XXE Data Access
+| Retrieve the content of `C:\Windows\system.ini` or `/etc/passwd` from the server.
+| xref:part2/xxe.adoc#_retrieve_the_content_of_cwindowssystem_ini_or_etcpasswd_from_the_server[💡]
+
+| XXE DoS
+| Give the server something to chew on for quite a while.
+| xref:part2/xxe.adoc#_give_the_server_something_to_chew_on_for_quite_a_while[💡]
+
+| Zero Stars
+| Give a devastating zero-star feedback to the store.
+| xref:part2/improper-input-validation.adoc#_give_a_devastating_zero_star_feedback_to_the_store[💡]
+|===
+endif::[]
+
+ifeval::[{is_ctf} == 0]
+|===
+| Name | Description | Hints | Solution
+| Access Log
+| Gain access to any access log file of the server.
+| xref:part2/sensitive-data-exposure.adoc#_gain_access_to_any_access_log_file_of_the_server[💡]
+| xref:appendix/solutions.adoc#_gain_access_to_any_access_log_file_of_the_server[📕]
+
+| Admin Registration
+| Register as a user with administrator privileges.
+| xref:part2/improper-input-validation.adoc#_register_as_a_user_with_administrator_privileges[💡]
+| xref:appendix/solutions.adoc#_register_as_a_user_with_administrator_privileges[📕]
+
+| Admin Section
+| Access the administration section of the store.
+| xref:part2/broken-access-control.adoc#_access_the_administration_section_of_the_store[💡]
+| xref:appendix/solutions.adoc#_access_the_administration_section_of_the_store[📕]
+
+| AI Debugging
+| Reveal some behind-the-scenes information on the chatbot as a non-admin user.
+| xref:part2/broken-access-control.adoc#_reveal_some_behind_the_scenes_information_on_the_chatbot_as_a_non_admin_user[💡]
+| xref:appendix/solutions.adoc#_reveal_some_behind_the_scenes_information_on_the_chatbot_as_a_non_admin_user[📕]
+
+| Allowlist Bypass
+| Enforce a redirect to a page you are not supposed to redirect to.
+| xref:part2/unvalidated-redirects.adoc#_enforce_a_redirect_to_a_page_you_are_not_supposed_to_redirect_to[💡]
+| xref:appendix/solutions.adoc#_enforce_a_redirect_to_a_page_you_are_not_supposed_to_redirect_to[📕]
+
+| API-only XSS
+| Perform a _persisted_ XSS attack with `<iframe src="javascript:alert(`xss`)">` without using the frontend application at all.
+| xref:part2/xss.adoc#_perform_a_persisted_xss_attack_without_using_the_frontend_application_at_all[💡]
+| xref:appendix/solutions.adoc#_perform_a_persisted_xss_attack_without_using_the_frontend_application_at_all[📕]
+
+| Arbitrary File Write
+| Overwrite the Legal Information file.
+| xref:part2/vulnerable-components.adoc#_overwrite_the_legal_information_file[💡]
+| xref:appendix/solutions.adoc#_overwrite_the_legal_information_file[📕]
+
+| Bjoern's Favorite Pet
+| Reset the password of Bjoern's OWASP account via the Forgot Password mechanism with _the truthful answer_ to his security question.
+| xref:part2/broken-authentication.adoc#_reset_the_password_of_bjoerns_owasp_account_via_the_forgot_password_mechanism[💡]
+| xref:appendix/solutions.adoc#_reset_the_password_of_bjoerns_owasp_account_via_the_forgot_password_mechanism[📕]
+
+| Blockchain Hype
+| Learn about the Token Sale before its official announcement.
+| xref:part2/security-through-obscurity.adoc#_learn_about_the_token_sale_before_its_official_announcement[💡]
+| xref:appendix/solutions.adoc#_learn_about_the_token_sale_before_its_official_announcement[📕]
+
+| Blocked RCE DoS
+| Perform a Remote Code Execution that would keep a less hardened application busy forever.
+| xref:part2/insecure-deserialization.adoc#_perform_a_remote_code_execution_that_would_keep_a_less_hardened_application_busy_forever[💡]
+| xref:appendix/solutions.adoc#_perform_a_remote_code_execution_that_would_keep_a_less_hardened_application_busy_forever[📕]
+
+| Bonus Payload
+| Use the bonus payload `+<iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/771984076&color=%23ff5500&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>+` in the _DOM XSS_ challenge.
+| xref:part2/xss.adoc#_use_the_bonus_payload_in_the_dom_xss_challenge[💡]
+| xref:appendix/solutions.adoc#_use_the_bonus_payload_in_the_dom_xss_challenge[📕]
+
+| CAPTCHA Bypass
+| Submit 10 or more customer feedbacks within 10 seconds.
+| xref:part2/broken-anti-automation.adoc#_submit_10_or_more_customer_feedbacks_within_10_seconds[💡]
+| xref:appendix/solutions.adoc#_submit_10_or_more_customer_feedbacks_within_10_seconds[📕]
+
+| Change Bender's Password
+| Change Bender's password into _slurmCl4ssic_ without using SQL Injection or Forgot Password.
+| xref:part2/broken-authentication.adoc#_change_benders_password_into_slurmcl4ssic_without_using_sql_injection_or_forgot_password[💡]
+| xref:appendix/solutions.adoc#_change_benders_password_into_slurmcl4ssic_without_using_sql_injection_or_forgot_password[📕]
+
+| Chatbot Prompt Injection
+| Trick the chatbot into generating a coupon code for you despite its coupon policy saying otherwise.
+| xref:part2/injection.adoc#_trick_the_chatbot_into_generating_a_coupon_code_for_you[💡]
+| xref:appendix/solutions.adoc#_trick_the_chatbot_into_generating_a_coupon_code_for_you[📕]
+
+| Christmas Special
+| Order the Christmas special offer of 2014.
+| xref:part2/injection.adoc#_order_the_christmas_special_offer_of_2014[💡]
+| xref:appendix/solutions.adoc#_order_the_christmas_special_offer_of_2014[📕]
+
+| Client-side XSS Protection
+| Perform a _persisted_ XSS attack with `<iframe src="javascript:alert(`xss`)">` bypassing a client-side security mechanism.
+| xref:part2/xss.adoc#_perform_a_persisted_xss_attack_bypassing_a_client_side_security_mechanism[💡]
+| xref:appendix/solutions.adoc#_perform_a_persisted_xss_attack_bypassing_a_client_side_security_mechanism[📕]
+
+| Confidential Document
+| Access a confidential document.
+| xref:part2/sensitive-data-exposure.adoc#_access_a_confidential_document[💡]
+| xref:appendix/solutions.adoc#_access_a_confidential_document[📕]
+
+| Cross-Site Imaging
+| Stick cute cross-domain kittens all over our delivery boxes.
+| xref:part2/security-misconfiguration.adoc#_stick_cute_cross_domain_kittens_all_over_our_delivery_boxes[💡]
+| xref:appendix/solutions.adoc#_stick_cute_cross_domain_kittens_all_over_our_delivery_boxes[📕]
+
+| CSP Bypass
+| Bypass the Content Security Policy and perform an XSS attack with `<script>alert(`xss`)</script>` on a legacy page within the application.
+| xref:part2/xss.adoc#_bypass_the_content_security_policy_and_perform_an_xss_attack_on_a_legacy_page[💡]
+| xref:appendix/solutions.adoc#_bypass_the_content_security_policy_and_perform_an_xss_attack_on_a_legacy_page[📕]
+
+| CSRF
+| Change the name of a user by performing Cross-Site Request Forgery from another origin.
+| xref:part2/broken-access-control.adoc#_change_the_name_of_a_user_by_performing_cross_site_request_forgery_from_another_origin[💡]
+| xref:appendix/solutions.adoc#_change_the_name_of_a_user_by_performing_cross_site_request_forgery_from_another_origin[📕]
+
+| Database Schema
+| Exfiltrate the entire DB schema definition via SQL Injection.
+| xref:part2/injection.adoc#_exfiltrate_the_entire_db_schema_definition_via_sql_injection[💡]
+| xref:appendix/solutions.adoc#_exfiltrate_the_entire_db_schema_definition_via_sql_injection[📕]
+
+| Deluxe Fraud
+| Obtain a Deluxe Membership without paying for it.
+| xref:part2/improper-input-validation.adoc#_obtain_a_deluxe_membership_without_paying_for_it[💡]
+| xref:appendix/solutions.adoc#_obtain_a_deluxe_membership_without_paying_for_it[📕]
+
+| Deprecated Interface
+| Use a deprecated B2B interface that was not properly shut down.
+| xref:part2/security-misconfiguration.adoc#_use_a_deprecated_b2b_interface_that_was_not_properly_shut_down[💡]
+| xref:appendix/solutions.adoc#_use_a_deprecated_b2b_interface_that_was_not_properly_shut_down[📕]
+
+| DOM XSS
+| Perform a _DOM_ XSS attack with `<iframe src="javascript:alert(`xss`)">`.
+| xref:part2/xss.adoc#_perform_a_dom_xss_attack[💡]
+| xref:appendix/solutions.adoc#_perform_a_dom_xss_attack[📕]
+
+| Easter Egg
+| Find the hidden easter egg.
+| xref:part2/broken-access-control.adoc#_find_the_hidden_easter_egg[💡]
+| xref:appendix/solutions.adoc#_find_the_hidden_easter_egg[📕]
+
+| Email Leak
+| Perform an unwanted information disclosure by accessing data cross-domain.
+| xref:part2/sensitive-data-exposure.adoc#_perform_an_unwanted_information_disclosure_by_accessing_data_cross_domain[💡]
+| xref:appendix/solutions.adoc#_perform_an_unwanted_information_disclosure_by_accessing_data_cross_domain[📕]
+
+| Empty User Registration
+| Register a user with an empty email and password.
+| xref:part2/improper-input-validation.adoc#_register_a_user_with_an_empty_email_and_password[💡]
+| xref:appendix/solutions.adoc#_register_a_user_with_an_empty_email_and_password[📕]
+
+| Ephemeral Accountant
+| Log in with the (non-existing) accountant _acc0unt4nt@juice-sh.op_ without ever registering that user.
+| xref:part2/injection.adoc#_log_in_with_the_non_existing_accountant_without_ever_registering_that_user[💡]
+| xref:appendix/solutions.adoc#_log_in_with_the_non_existing_accountant_without_ever_registering_that_user[📕]
+
+| Error Handling
+| Provoke an error that is neither very gracefully nor consistently handled.
+| xref:part2/security-misconfiguration.adoc#_provoke_an_error_that_is_neither_very_gracefully_nor_consistently_handled[💡]
+| xref:appendix/solutions.adoc#_provoke_an_error_that_is_neither_very_gracefully_nor_consistently_handled[📕]
+
+| Expired Coupon
+| Successfully redeem an expired campaign coupon code.
+| xref:part2/improper-input-validation.adoc#_successfully_redeem_an_expired_campaign_coupon_code[💡]
+| xref:appendix/solutions.adoc#_successfully_redeem_an_expired_campaign_coupon_code[📕]
+
+| Exposed credentials
+| A developer was careless with hardcoding unused, but still valid credentials for a testing account on the client-side.
+| xref:part2/sensitive-data-exposure.adoc#_a_developer_was_careless_with_hardcoding_unused_but_still_valid_credentials[💡]
+| xref:appendix/solutions.adoc#_a_developer_was_careless_with_hardcoding_unused_but_still_valid_credentials[📕]
+
+| Exposed Metrics
+| Find the endpoint that serves usage data to be scraped by a popular monitoring system.
+| xref:part2/sensitive-data-exposure.adoc#_find_the_endpoint_that_serves_usage_data_to_be_scraped_by_a_popular_monitoring_system[💡]
+| xref:appendix/solutions.adoc#_find_the_endpoint_that_serves_usage_data_to_be_scraped_by_a_popular_monitoring_system[📕]
+
+| Extra Language
+| Retrieve the language file that never made it into production.
+| xref:part2/broken-anti-automation.adoc#_retrieve_the_language_file_that_never_made_it_into_production[💡]
+| xref:appendix/solutions.adoc#_retrieve_the_language_file_that_never_made_it_into_production[📕]
+
+| Five-Star Feedback
+| Get rid of all 5-star customer feedback.
+| xref:part2/broken-access-control.adoc#_get_rid_of_all_5_star_customer_feedback[💡]
+| xref:appendix/solutions.adoc#_get_rid_of_all_5_star_customer_feedback[📕]
+
+| Forged Coupon
+| Forge a coupon code that gives you a discount of at least 80%.
+| xref:part2/cryptographic-issues.adoc#_forge_a_coupon_code_that_gives_you_a_discount_of_at_least_80[💡]
+| xref:appendix/solutions.adoc#_forge_a_coupon_code_that_gives_you_a_discount_of_at_least_80[📕]
+
+| Forged Feedback
+| Post some feedback in another user's name.
+| xref:part2/broken-access-control.adoc#_post_some_feedback_in_another_users_name[💡]
+| xref:appendix/solutions.adoc#_post_some_feedback_in_another_users_name[📕]
+
+| Forged Review
+| Post a product review as another user or edit any user's existing review.
+| xref:part2/broken-access-control.adoc#_post_a_product_review_as_another_user_or_edit_any_users_existing_review[💡]
+| xref:appendix/solutions.adoc#_post_a_product_review_as_another_user_or_edit_any_users_existing_review[📕]
+
+| Forged Signed JWT
+| Forge an almost properly RSA-signed JWT token that impersonates the (non-existing) user _rsa_lord@juice-sh.op_.
+| xref:part2/vulnerable-components.adoc#_forge_an_almost_properly_rsa_signed_jwt_token[💡]
+| xref:appendix/solutions.adoc#_forge_an_almost_properly_rsa_signed_jwt_token[📕]
+
+| Forgotten Developer Backup
+| Access a developer's forgotten backup file.
+| xref:part2/sensitive-data-exposure.adoc#_access_a_developers_forgotten_backup_file[💡]
+| xref:appendix/solutions.adoc#_access_a_developers_forgotten_backup_file[📕]
+
+| Forgotten Sales Backup
+| Access a salesman's forgotten backup file.
+| xref:part2/sensitive-data-exposure.adoc#_access_a_salesmans_forgotten_backup_file[💡]
+| xref:appendix/solutions.adoc#_access_a_salesmans_forgotten_backup_file[📕]
+
+| Frontend Typosquatting
+| Inform the shop about a _typosquatting_ imposter that dug itself deep into the frontend. (Mention the exact name of the culprit)
+| xref:part2/vulnerable-components.adoc#_inform_the_shop_about_a_typosquatting_imposter_that_dug_itself_deep_into_the_frontend[💡]
+| xref:appendix/solutions.adoc#_inform_the_shop_about_a_typosquatting_imposter_that_dug_itself_deep_into_the_frontend[📕]
+
+| GDPR Data Erasure
+| Log in with Chris' erased user account.
+| xref:part2/broken-authentication.adoc#_log_in_with_chris_erased_user_account[💡]
+| xref:appendix/solutions.adoc#_log_in_with_chris_erased_user_account[📕]
+
+| GDPR Data Theft
+| Steal someone else's personal data without using Injection.
+| xref:part2/sensitive-data-exposure.adoc#_steal_someone_elses_personal_data_without_using_injection[💡]
+| xref:appendix/solutions.adoc#_steal_someone_elses_personal_data_without_using_injection[📕]
+
+| Greedy Chatbot Manipulation
+| Convince the chatbot to give you a coupon of 50% or more. Because apparently a 10% max policy is just a suggestion when you ask nicely enough.
+| xref:part2/injection.adoc#_convince_the_chatbot_to_give_you_a_coupon_of_50_or_more[💡]
+| xref:appendix/solutions.adoc#_convince_the_chatbot_to_give_you_a_coupon_of_50_or_more[📕]
+
+| HTTP-Header XSS
+| Perform a _persisted_ XSS attack with `<iframe src="javascript:alert(`xss`)">` through an HTTP header.
+| xref:part2/xss.adoc#_perform_a_persisted_xss_attack_through_an_http_header[💡]
+| xref:appendix/solutions.adoc#_perform_a_persisted_xss_attack_through_an_http_header[📕]
+
+| Imaginary Challenge
+| Solve challenge #999. Unfortunately, this challenge does not exist.
+| xref:part2/cryptographic-issues.adoc#_solve_challenge_999[💡]
+| xref:appendix/solutions.adoc#_solve_challenge_999[📕]
+
+| Leaked Access Logs
+| Dumpster dive the Internet for a leaked password and log in to the original user account it belongs to. (Creating a new account with the same password does not qualify as a solution.)
+| xref:part2/sensitive-data-exposure.adoc#_dumpster_dive_the_internet_for_a_leaked_password_and_log_in_to_the_original_user_account_it_belongs_to[💡]
+| xref:appendix/solutions.adoc#_dumpster_dive_the_internet_for_a_leaked_password_and_log_in_to_the_original_user_account_it_belongs_to[📕]
+
+| Leaked API Key
+| Inform the shop about a leaked API key. (Mention the exact key in your comment)
+| xref:part2/sensitive-data-exposure.adoc#_inform_the_shop_about_a_leaked_api_key[💡]
+| xref:appendix/solutions.adoc#_inform_the_shop_about_a_leaked_api_key[📕]
+
+| Leaked Unsafe Product
+| Identify an unsafe product that was removed from the shop and inform the shop which ingredients are dangerous.
+| xref:part2/sensitive-data-exposure.adoc#_identify_an_unsafe_product_that_was_removed_from_the_shop_and_inform_the_shop_which_ingredients_are_dangerous[💡]
+| xref:appendix/solutions.adoc#_identify_an_unsafe_product_that_was_removed_from_the_shop_and_inform_the_shop_which_ingredients_are_dangerous[📕]
+
+| Legacy Typosquatting
+| Inform the shop about a _typosquatting_ trick it has been a victim of at least in v6.2.0-SNAPSHOT. (Mention the exact name of the culprit)
+| xref:part2/vulnerable-components.adoc#_inform_the_shop_about_a_typosquatting_trick_it_has_been_a_victim_of[💡]
+| xref:appendix/solutions.adoc#_inform_the_shop_about_a_typosquatting_trick_it_has_been_a_victim_of[📕]
+
+| Local File Read
+| Gain read access to an arbitrary local file on the web server.
+| xref:part2/vulnerable-components.adoc#_gain_read_access_to_an_arbitrary_local_file_on_the_web_server[💡]
+| xref:appendix/solutions.adoc#_gain_read_access_to_an_arbitrary_local_file_on_the_web_server[📕]
+
+| Login Admin
+| Log in with the administrator's user account.
+| xref:part2/injection.adoc#_log_in_with_the_administrators_user_account[💡]
+| xref:appendix/solutions.adoc#_log_in_with_the_administrators_user_account[📕]
+
+| Login Amy
+| Log in with Amy's original user credentials. (This could take 93.83 billion trillion trillion centuries to brute force, but luckily she did not read the "One Important Final Note")
+| xref:part2/sensitive-data-exposure.adoc#_log_in_with_amys_original_user_credentials[💡]
+| xref:appendix/solutions.adoc#_log_in_with_amys_original_user_credentials[📕]
+
+| Login Bender
+| Log in with Bender's user account.
+| xref:part2/injection.adoc#_log_in_with_benders_user_account[💡]
+| xref:appendix/solutions.adoc#_log_in_with_benders_user_account[📕]
+
+| Login Bjoern
+| Log in with Bjoern's Gmail account without previously changing his password, applying SQL Injection, or hacking his Google account.
+| xref:part2/broken-authentication.adoc#_log_in_with_bjoerns_gmail_account[💡]
+| xref:appendix/solutions.adoc#_log_in_with_bjoerns_gmail_account[📕]
+
+| Login Cloud Admin
+| Log in with the cloud admin's user account _without_ using SQL Injection.
+| xref:part2/sensitive-data-exposure.adoc#_log_in_with_the_cloud_admins_user_account[💡]
+| xref:appendix/solutions.adoc#_log_in_with_the_cloud_admins_user_account[📕]
+
+| Login Jim
+| Log in with Jim's user account.
+| xref:part2/injection.adoc#_log_in_with_jims_user_account[💡]
+| xref:appendix/solutions.adoc#_log_in_with_jims_user_account[📕]
+
+| Login MC SafeSearch
+| Log in with MC SafeSearch's original user credentials without applying SQL Injection or any other bypass.
+| xref:part2/sensitive-data-exposure.adoc#_log_in_with_mc_safesearchs_original_user_credentials[💡]
+| xref:appendix/solutions.adoc#_log_in_with_mc_safesearchs_original_user_credentials[📕]
+
+| Login Support Team
+| Log in with the support team's original user credentials without applying SQL Injection or any other bypass.
+| xref:part2/security-misconfiguration.adoc#_log_in_with_the_support_teams_original_user_credentials[💡]
+| xref:appendix/solutions.adoc#_log_in_with_the_support_teams_original_user_credentials[📕]
+
+| Manipulate Basket
+| Put an additional product into another user's shopping basket.
+| xref:part2/broken-access-control.adoc#_put_an_additional_product_into_another_users_shopping_basket[💡]
+| xref:appendix/solutions.adoc#_put_an_additional_product_into_another_users_shopping_basket[📕]
+
+| Mass Dispel
+| Close multiple "Challenge solved"-notifications in one go.
+| xref:part2/miscellaneous.adoc#_close_multiple_challenge_solved_notifications_in_one_go[💡]
+| xref:appendix/solutions.adoc#_close_multiple_challenge_solved_notifications_in_one_go[📕]
+
+| Memory Bomb
+| Drop some explosive data into a vulnerable file-handling endpoint.
+| xref:part2/insecure-deserialization.adoc#_drop_some_explosive_data_into_a_vulnerable_file_handling_endpoint[💡]
+| xref:appendix/solutions.adoc#_drop_some_explosive_data_into_a_vulnerable_file_handling_endpoint[📕]
+
+| Meta Geo Stalking
+| Determine the answer to John's security question by looking at an upload of him to the Photo Wall and use it to reset his password via the Forgot Password mechanism.
+| xref:part2/sensitive-data-exposure.adoc#_determine_the_answer_to_johns_security_question[💡]
+| xref:appendix/solutions.adoc#_determine_the_answer_to_johns_security_question[📕]
+
+| Mint the Honey Pot
+| Mint the Honey Pot NFT by gathering BEEs from the bee haven.
+| xref:part2/improper-input-validation.adoc#_mint_the_honey_pot_nft_by_gathering_bees_from_the_bee_haven[💡]
+| xref:appendix/solutions.adoc#_mint_the_honey_pot_nft_by_gathering_bees_from_the_bee_haven[📕]
+
+| Misplaced IaC Files
+| Access the misplaced Infrastructure as Code files that were accidentally included in the web application deliverable.
+| xref:part2/security-misconfiguration.adoc#_access_the_misplaced_infrastructure_as_code_files[💡]
+| xref:appendix/solutions.adoc#_access_the_misplaced_infrastructure_as_code_files[📕]
+
+| Misplaced Signature File
+| Access a misplaced SIEM signature file.
+| xref:part2/sensitive-data-exposure.adoc#_access_a_misplaced_siem_signature_file[💡]
+| xref:appendix/solutions.adoc#_access_a_misplaced_siem_signature_file[📕]
+
+| Missing Encoding
+| Retrieve the photo of Bjoern's cat in "melee combat-mode".
+| xref:part2/improper-input-validation.adoc#_retrieve_the_photo_of_bjoerns_cat_in_melee_combat_mode[💡]
+| xref:appendix/solutions.adoc#_retrieve_the_photo_of_bjoerns_cat_in_melee_combat_mode[📕]
+
+| Multiple Likes
+| Like any review at least three times as the same user.
+| xref:part2/broken-anti-automation.adoc#_like_any_review_at_least_three_times_as_the_same_user[💡]
+| xref:appendix/solutions.adoc#_like_any_review_at_least_three_times_as_the_same_user[📕]
+
+| Nested Easter Egg
+| Apply some advanced cryptanalysis to find _the real_ easter egg.
+| xref:part2/cryptographic-issues.adoc#_apply_some_advanced_cryptanalysis_to_find_the_real_easter_egg[💡]
+| xref:appendix/solutions.adoc#_apply_some_advanced_cryptanalysis_to_find_the_real_easter_egg[📕]
+
+| NFT Takeover
+| Take over the wallet containing our official Soul Bound Token (NFT).
+| xref:part2/sensitive-data-exposure.adoc#_take_over_the_wallet_containing_our_official_soul_bound_token[💡]
+| xref:appendix/solutions.adoc#_take_over_the_wallet_containing_our_official_soul_bound_token[📕]
+
+| NoSQL DoS
+| Let the server sleep for some time. (It has done more than enough hard work for you)
+| xref:part2/injection.adoc#_let_the_server_sleep_for_some_time[💡]
+| xref:appendix/solutions.adoc#_let_the_server_sleep_for_some_time[📕]
+
+| NoSQL Exfiltration
+| All your orders are belong to us! Even the ones which don't!
+| xref:part2/injection.adoc#_all_your_orders_are_belong_to_us[💡]
+| xref:appendix/solutions.adoc#_all_your_orders_are_belong_to_us[📕]
+
+| NoSQL Manipulation
+| Update multiple product reviews at the same time.
+| xref:part2/injection.adoc#_update_multiple_product_reviews_at_the_same_time[💡]
+| xref:appendix/solutions.adoc#_update_multiple_product_reviews_at_the_same_time[📕]
+
+| Outdated Allowlist
+| Let us redirect you to one of our crypto currency addresses which are not promoted any longer.
+| xref:part2/unvalidated-redirects.adoc#_let_us_redirect_you_to_one_of_our_crypto_currency_addresses[💡]
+| xref:appendix/solutions.adoc#_let_us_redirect_you_to_one_of_our_crypto_currency_addresses[📕]
+
+| Password Hash Leak
+| Obtain the password (hash) of the currently logged-in user directly from a REST API endpoint.
+| xref:part2/sensitive-data-exposure.adoc#_obtain_the_password_hash_of_the_currently_logged_in_user_directly_from_a_rest_api_endpoint[💡]
+| xref:appendix/solutions.adoc#_obtain_the_password_hash_of_the_currently_logged_in_user_directly_from_a_rest_api_endpoint[📕]
+
+| Password Strength
+| Log in with the administrator's user credentials without previously changing them or applying SQL Injection.
+| xref:part2/broken-authentication.adoc#_log_in_with_the_administrators_user_credentials_without_previously_changing_them_or_applying_sql_injection[💡]
+| xref:appendix/solutions.adoc#_log_in_with_the_administrators_user_credentials_without_previously_changing_them_or_applying_sql_injection[📕]
+
+| Payback Time
+| Place an order that makes you rich.
+| xref:part2/improper-input-validation.adoc#_place_an_order_that_makes_you_rich[💡]
+| xref:appendix/solutions.adoc#_place_an_order_that_makes_you_rich[📕]
+
+| Poison Null Byte
+| Bypass a security control with a Poison Null Byte to access a file not meant for your eyes.
+| xref:part2/improper-input-validation.adoc#_bypass_a_security_control_with_a_poison_null_byte[💡]
+| xref:appendix/solutions.adoc#_bypass_a_security_control_with_a_poison_null_byte[📕]
+
+| Premium Paywall
+| Unlock Premium Challenge to access exclusive content.
+| xref:part2/cryptographic-issues.adoc#_unlock_premium_challenge_to_access_exclusive_content[💡]
+| xref:appendix/solutions.adoc#_unlock_premium_challenge_to_access_exclusive_content[📕]
+
+| Privacy Policy
+| Read our privacy policy.
+| xref:part2/miscellaneous.adoc#_read_our_privacy_policy[💡]
+| xref:appendix/solutions.adoc#_read_our_privacy_policy[📕]
+
+| Privacy Policy Inspection
+| Prove that you actually read our privacy policy.
+| xref:part2/security-through-obscurity.adoc#_prove_that_you_actually_read_our_privacy_policy[💡]
+| xref:appendix/solutions.adoc#_prove_that_you_actually_read_our_privacy_policy[📕]
+
+| Product Tampering
+| Change the `href` of the link within the OWASP SSL Advanced Forensic Tool (O-Saft) product description into _https://owasp.slack.com_.
+| xref:part2/broken-access-control.adoc#_change_the_href_of_the_link_within_the_o_saft_product_description[💡]
+| xref:appendix/solutions.adoc#_change_the_href_of_the_link_within_the_o_saft_product_description[📕]
+
+| Reflected XSS
+| Perform a _reflected_ XSS attack with `<iframe src="javascript:alert(`xss`)">`.
+| xref:part2/xss.adoc#_perform_a_reflected_xss_attack[💡]
+| xref:appendix/solutions.adoc#_perform_a_reflected_xss_attack[📕]
+
+| Repetitive Registration
+| Follow the DRY principle while registering a user.
+| xref:part2/improper-input-validation.adoc#_follow_the_dry_principle_while_registering_a_user[💡]
+| xref:appendix/solutions.adoc#_follow_the_dry_principle_while_registering_a_user[📕]
+
+| Reset Bender's Password
+| Reset Bender's password via the Forgot Password mechanism with _the truthful answer_ to his security question.
+| xref:part2/broken-authentication.adoc#_reset_benders_password_via_the_forgot_password_mechanism[💡]
+| xref:appendix/solutions.adoc#_reset_benders_password_via_the_forgot_password_mechanism[📕]
+
+| Reset Bjoern's Password
+| Reset the password of Bjoern's internal account via the Forgot Password mechanism with _the truthful answer_ to his security question.
+| xref:part2/broken-authentication.adoc#_reset_the_password_of_bjoerns_internal_account_via_the_forgot_password_mechanism[💡]
+| xref:appendix/solutions.adoc#_reset_the_password_of_bjoerns_internal_account_via_the_forgot_password_mechanism[📕]
+
+| Reset Jim's Password
+| Reset Jim's password via the Forgot Password mechanism with _the truthful answer_ to his security question.
+| xref:part2/broken-authentication.adoc#_reset_jims_password_via_the_forgot_password_mechanism[💡]
+| xref:appendix/solutions.adoc#_reset_jims_password_via_the_forgot_password_mechanism[📕]
+
+| Reset Morty's Password
+| Reset Morty's password via the Forgot Password mechanism with _his obfuscated answer_ to his security question.
+| xref:part2/broken-anti-automation.adoc#_reset_mortys_password_via_the_forgot_password_mechanism[💡]
+| xref:appendix/solutions.adoc#_reset_mortys_password_via_the_forgot_password_mechanism[📕]
+
+| Reset Uvogin's Password
+| Reset Uvogin's password via the Forgot Password mechanism with _the original answer_ to his security question.
+| xref:part2/sensitive-data-exposure.adoc#_reset_uvogins_password_via_the_forgot_password_mechanism[💡]
+| xref:appendix/solutions.adoc#_reset_uvogins_password_via_the_forgot_password_mechanism[📕]
+
+| Retrieve Blueprint
+| Deprive the shop of earnings by downloading the blueprint for one of its products
+| xref:part2/sensitive-data-exposure.adoc#_deprive_the_shop_of_earnings_by_downloading_the_blueprint_for_one_of_its_products[💡]
+| xref:appendix/solutions.adoc#_deprive_the_shop_of_earnings_by_downloading_the_blueprint_for_one_of_its_products[📕]
+
+| Score Board
+| Find the carefully hidden 'Score Board' page.
+| xref:part2/score-board.adoc#_find_the_carefully_hidden_score_board_page[💡]
+| xref:appendix/solutions.adoc#_find_the_carefully_hidden_score_board_page[📕]
+
+| Security Advisory
+| The Juice Shop is susceptible to a known vulnerability in a library, for which an advisory has already been issued, marking the Juice Shop as _known affected_. A fix is still pending. Inform the shop about a suitable checksum as proof that you did your due diligence.
+| xref:part2/miscellaneous.adoc#_the_juice_shop_is_susceptible_to_a_known_vulnerability_in_a_library_for_which_an_advisory_has_already_been_issued[💡]
+| xref:appendix/solutions.adoc#_the_juice_shop_is_susceptible_to_a_known_vulnerability_in_a_library_for_which_an_advisory_has_already_been_issued[📕]
+
+| Security Policy
+| Behave like any "white hat" should before getting into the action.
+| xref:part2/miscellaneous.adoc#_behave_like_any_white_hat_should_before_getting_into_the_action[💡]
+| xref:appendix/solutions.adoc#_behave_like_any_white_hat_should_before_getting_into_the_action[📕]
+
+| Server-side XSS Protection
+| Perform a _persisted_ XSS attack with `<iframe src="javascript:alert(`xss`)">` bypassing a server-side security mechanism.
+| xref:part2/xss.adoc#_perform_a_persisted_xss_attack_bypassing_a_server_side_security_mechanism[💡]
+| xref:appendix/solutions.adoc#_perform_a_persisted_xss_attack_bypassing_a_server_side_security_mechanism[📕]
+
+| SSRF
+| Request a hidden resource on server through server.
+| xref:part2/broken-access-control.adoc#_request_a_hidden_resource_on_server_through_server[💡]
+| xref:appendix/solutions.adoc#_request_a_hidden_resource_on_server_through_server[📕]
+
+| SSTi
+| Infect the server with juicy malware by abusing arbitrary command execution.
+| xref:part2/injection.adoc#_infect_the_server_with_juicy_malware_by_abusing_arbitrary_command_execution[💡]
+| xref:appendix/solutions.adoc#_infect_the_server_with_juicy_malware_by_abusing_arbitrary_command_execution[📕]
+
+| Steganography
+| Rat out a notorious character hiding in plain sight in the shop. (Mention the exact name of the character)
+| xref:part2/security-through-obscurity.adoc#_rat_out_a_notorious_character_hiding_in_plain_sight_in_the_shop[💡]
+| xref:appendix/solutions.adoc#_rat_out_a_notorious_character_hiding_in_plain_sight_in_the_shop[📕]
+
+| Successful RCE DoS
+| Perform a Remote Code Execution that occupies the server for a while without using infinite loops.
+| xref:part2/insecure-deserialization.adoc#_perform_a_remote_code_execution_that_occupies_the_server_for_a_while_without_using_infinite_loops[💡]
+| xref:appendix/solutions.adoc#_perform_a_remote_code_execution_that_occupies_the_server_for_a_while_without_using_infinite_loops[📕]
+
+| Supply Chain Attack
+| Inform the development team about a danger to some of _their_ credentials. (Send them the URL of the _original report_ or an assigned CVE or another identifier of this vulnerability)
+| xref:part2/vulnerable-components.adoc#_inform_the_development_team_about_a_danger_to_some_of_their_credentials[💡]
+| xref:appendix/solutions.adoc#_inform_the_development_team_about_a_danger_to_some_of_their_credentials[📕]
+
+| System Prompt Extraction
+| Extract the chatbot's system prompt using prompt injection, then submit your findings (including any confidential sections) via the Customer Complaint form.
+| xref:part2/injection.adoc#_extract_the_chatbots_system_prompt[💡]
+| xref:appendix/solutions.adoc#_extract_the_chatbots_system_prompt[📕]
+
+| Two Factor Authentication
+| Solve the 2FA challenge for user "wurstbrot". (Disabling, bypassing or overwriting his 2FA settings does not count as a solution)
+| xref:part2/broken-authentication.adoc#_solve_the_2fa_challenge_for_user_wurstbrot[💡]
+| xref:appendix/solutions.adoc#_solve_the_2fa_challenge_for_user_wurstbrot[📕]
+
+| Unsigned JWT
+| Forge an essentially unsigned JWT token that impersonates the (non-existing) user _jwtn3d@juice-sh.op_.
+| xref:part2/vulnerable-components.adoc#_forge_an_essentially_unsigned_jwt_token[💡]
+| xref:appendix/solutions.adoc#_forge_an_essentially_unsigned_jwt_token[📕]
+
+| Upload Size
+| Upload a file larger than 100 kB.
+| xref:part2/improper-input-validation.adoc#_upload_a_file_larger_than_100_kb[💡]
+| xref:appendix/solutions.adoc#_upload_a_file_larger_than_100_kb[📕]
+
+| Upload Type
+| Upload a file that has no .pdf or .zip extension.
+| xref:part2/improper-input-validation.adoc#_upload_a_file_that_has_no_pdf_or_zip_extension[💡]
+| xref:appendix/solutions.adoc#_upload_a_file_that_has_no_pdf_or_zip_extension[📕]
+
+| User Credentials
+| Retrieve a list of all user credentials via SQL Injection
+| xref:part2/injection.adoc#_retrieve_a_list_of_all_user_credentials_via_sql_injection[💡]
+| xref:appendix/solutions.adoc#_retrieve_a_list_of_all_user_credentials_via_sql_injection[📕]
+
+| Video XSS
+| Embed an XSS payload `</script><script>alert(`xss`)</script>` into our promo video.
+| xref:part2/xss.adoc#_embed_an_xss_payload_into_our_promo_video[💡]
+| xref:appendix/solutions.adoc#_embed_an_xss_payload_into_our_promo_video[📕]
+
+| View Basket
+| View another user's shopping basket.
+| xref:part2/broken-access-control.adoc#_view_another_users_shopping_basket[💡]
+| xref:appendix/solutions.adoc#_view_another_users_shopping_basket[📕]
+
+| Visual Geo Stalking
+| Determine the answer to Emma's security question by looking at an upload of her to the Photo Wall and use it to reset her password via the Forgot Password mechanism.
+| xref:part2/sensitive-data-exposure.adoc#_determine_the_answer_to_emmas_security_question[💡]
+| xref:appendix/solutions.adoc#_determine_the_answer_to_emmas_security_question[📕]
+
+| Vulnerable Infrastructure
+| Inform the shop about the use of a known vulnerable infrastructure component. (Identify the component as specifically as possible in your complaint)
+| xref:part2/vulnerable-components.adoc#_inform_the_shop_about_the_use_of_a_known_vulnerable_infrastructure_component[💡]
+| xref:appendix/solutions.adoc#_inform_the_shop_about_the_use_of_a_known_vulnerable_infrastructure_component[📕]
+
+| Vulnerable Library
+| Inform the shop about a high-severity vulnerability. (Mention the exact library name and version in your comment)
+| xref:part2/vulnerable-components.adoc#_inform_the_shop_about_a_vulnerable_library_it_is_using[💡]
+| xref:appendix/solutions.adoc#_inform_the_shop_about_a_vulnerable_library_it_is_using[📕]
+
+| Wallet Depletion
+| Withdraw more ETH from the new wallet than you deposited.
+| xref:part2/miscellaneous.adoc#_withdraw_more_eth_from_the_new_wallet_than_you_deposited[💡]
+| xref:appendix/solutions.adoc#_withdraw_more_eth_from_the_new_wallet_than_you_deposited[📕]
+
+| Web3 Sandbox
+| Find an accidentally deployed code sandbox for writing smart contracts on the fly.
+| xref:part2/broken-access-control.adoc#_find_an_accidentally_deployed_code_sandbox[💡]
+| xref:appendix/solutions.adoc#_find_an_accidentally_deployed_code_sandbox[📕]
+
+| Weird Crypto
+| Inform the shop about an algorithm or library it should definitely not use the way it does.
+| xref:part2/cryptographic-issues.adoc#_inform_the_shop_about_an_algorithm_or_library_it_should_definitely_not_use_the_way_it_does[💡]
+| xref:appendix/solutions.adoc#_inform_the_shop_about_an_algorithm_or_library_it_should_definitely_not_use_the_way_it_does[📕]
+
+| XXE Data Access
+| Retrieve the content of `C:\Windows\system.ini` or `/etc/passwd` from the server.
+| xref:part2/xxe.adoc#_retrieve_the_content_of_cwindowssystem_ini_or_etcpasswd_from_the_server[💡]
+| xref:appendix/solutions.adoc#_retrieve_the_content_of_cwindowssystem_ini_or_etcpasswd_from_the_server[📕]
+
+| XXE DoS
+| Give the server something to chew on for quite a while.
+| xref:part2/xxe.adoc#_give_the_server_something_to_chew_on_for_quite_a_while[💡]
+| xref:appendix/solutions.adoc#_give_the_server_something_to_chew_on_for_quite_a_while[📕]
+
+| Zero Stars
+| Give a devastating zero-star feedback to the store.
+| xref:part2/improper-input-validation.adoc#_give_a_devastating_zero_star_feedback_to_the_store[💡]
+| xref:appendix/solutions.adoc#_give_a_devastating_zero_star_feedback_to_the_store[📕]
+|===
+
+== Challenge Solutions
+
+In case you are getting frustrated with a particular challenge, you can
+refer to the xref:appendix/solutions.adoc#_challenge_solutions[Challenge solutions] appendix
+where you find explicit instructions how to successfully exploit each
+vulnerability. It is highly recommended to use this option only as a
+last resort. You will learn *a lot more* from hacking entirely on your
+own or relying only on the hints in this part of the book.
+
+endif::[]
+
+Hoping you have a great time solving these challenges.

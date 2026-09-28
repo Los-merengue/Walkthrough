@@ -1,0 +1,171 @@
+= Improper Input Validation[[_improper_input_validation]]
+
+include::../attributes.adoc[]
+
+____
+When software does not validate input properly, an attacker is able to
+craft the input in a form that is not expected by the rest of the
+application. This will lead to parts of the system receiving
+unintended input, which may result in altered control flow, arbitrary
+control of a resource, or arbitrary code execution.footnote:3_4_1[https://cwe.mitre.org/data/definitions/20.html]
+____
+
+[discrete]
+== Challenges covered in this chapter
+
+|===
+| Name | Description | Difficulty
+
+| Admin Registration
+| Register as a user with administrator privileges.
+| ⭐⭐⭐
+
+| Deluxe Fraud
+| Obtain a Deluxe Membership without paying for it.
+| ⭐⭐⭐
+
+| Empty User Registration
+| Register a user with an empty email and password.
+| ⭐⭐
+
+| Expired Coupon
+| Successfully redeem an expired campaign coupon code.
+| ⭐⭐⭐⭐
+
+| Mint the Honey Pot
+| Mint the Honey Pot NFT by gathering BEEs from the bee haven.
+| ⭐⭐⭐
+
+| Missing Encoding
+| Retrieve the photo of Bjoern's cat in "melee combat-mode".
+| ⭐
+
+| Payback Time
+| Place an order that makes you rich.
+| ⭐⭐⭐
+
+| Poison Null Byte
+| Bypass a security control with a Poison Null Byte to access a file not meant for your eyes.
+| ⭐⭐⭐⭐
+
+| Repetitive Registration
+| Follow the DRY principle while registering a user.
+| ⭐
+
+| Upload Size
+| Upload a file larger than 100 kB.
+| ⭐⭐⭐
+
+| Upload Type
+| Upload a file that has no .pdf or .zip extension.
+| ⭐⭐⭐
+
+| Zero Stars
+| Give a devastating zero-star feedback to the store.
+| ⭐
+|===
+
+== Register as a user with administrator privileges
+
+The Juice Shop does not bother to separate administrative functionality
+into a deployment unit of its own. Instead, the cheapest solution was
+chosen by simply leaving the admin features in the web shop itself and
+(allegedly) demanding a higher level of access to use them.
+
+include::../../partials/hints/registerAdminChallenge.adoc[]
+
+== Obtain a Deluxe Membership without paying for it
+
+The perks that come with a deluxe membership are reserved for paying
+customers only. There sure seem to be a lot of ways for a potential
+power user to give their money to juice shop. Perhaps, one of these
+payment methods could have some unforseen loopholes
+
+include::../../partials/hints/freeDeluxeChallenge.adoc[]
+
+== Register a user with an empty email and password
+
+include::../../partials/hints/emptyUserRegistration.adoc[]
+
+== Successfully redeem an expired campaign coupon code
+
+Apart from the monthly coupon codes found on Twitter the Juice Shop also
+offered some seasonal special campaign at least once.
+
+include::../../partials/hints/manipulateClockChallenge.adoc[]
+
+== Mint the Honey Pot NFT by gathering BEEs from the bee haven
+
+include::../../partials/hints/nftMintChallenge.adoc[]
+
+== Retrieve the photo of Bjoern's cat in "melee combat-mode"
+
+Who wouldn't want to see Bjoern's cat fighting fiercely with a furry
+green plush toy?
+
+include::../../partials/hints/missingEncodingChallenge.adoc[]
+
+image::part2/broken_image-photo_wall.png[Broken image on photo wall]
+
+== Place an order that makes you rich
+
+It is probably every web shop's nightmare that customers might figure
+out away to _receive_ money instead of _paying_ for their purchase.
+
+include::../../partials/hints/negativeOrderChallenge.adoc[]
+
+== Bypass a security control with a Poison Null Byte
+
+____
+By embedding NULL Bytes/characters into applications that do not
+handle postfix NULL terminators properly, an attacker can exploit a
+system using techniques such as Local File Inclusion. The Poison Null
+Byte exploit takes advantage strings with a known length that can
+contain null bytes, and whether or not the API being attacked uses
+null terminated strings. By placing a NULL byte in the string at a
+certain byte, the string will terminate at that point, nulling the
+rest of the string, such as a file extension.footnote:3_4_2[http://hakipedia.com/index.php/Poison_Null_Byte]
+____
+
+include::../../partials/hints/nullByteChallenge.adoc[]
+
+== Follow the DRY principle while registering a user
+
+____
+The DRY (Don't Repeat Yourself) Principle states:
+
+______
+Every piece of knowledge must have a single, unambiguous,
+authoritative representation within a system.
+______
+____
+
+include::../../partials/hints/passwordRepeatChallenge.adoc[]
+
+== Upload a file larger than 100 kB
+
+The Juice Shop offers its customers the chance to complain about an
+order that left them unsatisfied. One of the juice bottles might have
+leaked during transport or maybe the shipment was just two weeks late.
+To prove their claim, customers are supposed to attach their order
+confirmation document to the online complaint. To prevent abuse of this
+functionality, the application only allows file uploads of 100 kB or
+less.
+
+include::../../partials/hints/uploadSizeChallenge.adoc[]
+
+== Upload a file that has no .pdf or .zip extension
+
+In addition to the maximum file size, the Juice Shop also verifies that
+the uploaded file is actually a PDF. All other file types are rejected.
+
+include::../../partials/hints/uploadTypeChallenge.adoc[]
+
+== Give a devastating zero-star feedback to the store
+
+You might have realized that it is not possible to submit customer
+feedback on the _Contact Us_ screen until you entered a comment and
+selected a star rating from 1 to 5. This challenge is about tricking the
+application into accepting feedback with 0 stars.
+
+include::../../partials/hints/zeroStarsChallenge.adoc[]
