@@ -1,5 +1,5 @@
 # Threat Model Report: OWASP Juice Shop: Data Flow and Threat Analysis
-**Generated on:** 2025-02-14 17:45:31 UTC
+**Done on:** 2026-09-28 17:45:31 UTC
 
 ## Summary
 The OWASP Juice Shop is a deliberately insecure web application developed for security training and testing. It serves as a practical tool for learning about web application security vulnerabilities, making it significant in the ethical hacking community. The associated repository on GitHub contains the codebase, which allows users to explore and practice exploiting its vulnerabilities. Data Flow Reports provide crucial insights into the application's data handling, outlining potential security risks like improper input handling and exposure of sensitive data. Identified threats include spoofing, tampering, and information disclosure, all of which could significantly impact the integrity and confidentiality of the asset and its associated repositories.
